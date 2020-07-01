@@ -1,0 +1,84 @@
+{% extends "basico.html" %}
+{% block principal %}
+<div>
+    <div style="width: 50%;">
+        <form action="/search" method="POST">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Introduce cadena de búsqueda" name="busqueda"/>
+                <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">Buscar Pokemons</button>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div style="width: 50%;">
+        <form action="/add" method="POST">
+            <div class="input-group">
+                <input type="text" class="form-control" name="nuevoPok" placeholder="Introducir un nombre"/>
+                <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">Añadir Pokemon</button>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div style="width: 50%;">
+        <form action="/delete" method="POST">
+            <div class="input-group">
+                <input type="text" class="form-control" name="borrarPok" placeholder="Introducir un nombre"/>
+                <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">Eliminar Pokemon</button>
+                </span>
+            </div>
+        </form>
+    </div>
+    {% if par is defined %}
+        {% if par == 'exito' %}
+            <p  class="error">Pokemon añadido con éxito</p>
+        {% elif par == 'errorDupli' %}
+            <p  class="error">Pokemon no añadido. Nombre duplicado.</p>
+        {% elif par == 'exitoBorrado' %}
+            <p  class="error">Pokemon borrado!</p>
+        {% elif par == 'errorBorrado' %}
+            <p  class="error">Error de borrado. No existe el nombre de pokemon introducido.</p>
+        {% elif par == 'datos' %}
+        {% else %}
+            <p  class="error">{{par}}</p>
+        {% endif %}
+    {% endif %}
+    {% if pokemons is defined %}
+    <form action="/mongo" method="POST">
+        <ul class="valores"  data-columns="2">
+            {% for pokemon in pokemons %}
+                <li><a href="/mod?name={{pokemon['name']}}">{{pokemon['name']}}</a></li>
+            {% endfor %}
+        </ul>
+    </form>
+    {% endif %}
+    {% if datos is defined %}
+    <div class="datos_pokemon">
+        <div class="card" style="width: 12rem;display:inline-block;margin-bottom:1%;">
+            <img class="card-img-top" src="{{datos['img']}}" alt="Imagen">
+            <div class="card-body">
+                <form action="/mod" method="POST">
+                    <input type="hidden" value="{{datos['name']}}" name="nombre"/>
+                    <h5 class="text-primary">{{datos['name']}}</h5>
+                    <p class="card-text">
+                        <p>Tipo: 
+                            {% for tipo in datos['type'] %}
+                                <span>{{tipo}}</span>
+                            {% endfor %}
+                        </p>
+                        <p>Altura: <input type="text" name="altura" value="{{datos['height']}}"/></p>
+                        <p>Peso:  <input type="text" name="peso" value="{{datos['weight']}}"/></p>
+                    </p>
+                    <button class="btn btn-primary" type="submit">Modificar valores</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {%endif%}
+
+    
+    
+</div>
+{% endblock %}

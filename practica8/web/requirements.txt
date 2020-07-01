@@ -1,0 +1,5 @@
+Django>=2.2,<3.0
+django-allauth
+djangorestframework
+django-bootstrap4
+django-crispy-forms

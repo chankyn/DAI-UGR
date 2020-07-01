@@ -1,0 +1,54 @@
+.blue{
+    color:blue;
+}
+header,footer {
+    width: 100%;
+    height: 20%;
+}
+main {
+    width: 100%;
+    height: 60%;
+}
+
+/** HEADER **/
+header img {
+    float:left;
+}
+header div{
+    display:inline-block;
+}
+
+ul.format {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+ul.format li {
+	float: left;
+}
+
+ul.format li a {
+	display: block;
+	color: #666;
+	text-align: center;
+	padding-right:20px;
+	text-decoration: none;
+}
+
+/* Color del elemento del menu principal cuando el ratón está sobre el. */
+ul.format li a:hover {
+	color: #67b500;
+}
+
+
+/** MAIN **/
+
+main div#menu{
+    width: 20%;
+}
+
+main div#principal{
+    width:80%;
+}

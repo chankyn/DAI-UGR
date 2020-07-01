@@ -1,0 +1,20 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?q?=5Bexample=2Ecom=5D_Por_favor_confirmar_direcci=C3=B3n_de_correo_e?=
+ =?utf-8?q?lectr=C3=B3nico?=
+From: webmaster@localhost
+To: s@gmail.com
+Date: Wed, 04 Dec 2019 01:24:39 -0000
+Message-ID: <157542267941.113.9646507971722139265@771a86c434c3>
+
+¡Te saluda example.com!
+
+Estás recibiendo este correo electrónico porque el usuario  s ha dado su correo electrónico para conectar su cuenta.
+
+Para confirmar que esto es correcto, haz clic en http://192.168.99.100:8000/accounts/confirm-email/NQ:1icJPD:5izBuNKHuo9rquawVkg2p2crAQo/
+
+Gracias example.com!
+example.com
+-------------------------------------------------------------------------------

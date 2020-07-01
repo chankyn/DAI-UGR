@@ -1,0 +1,22 @@
+# docker-compose.yml
+version: '3.7'
+
+services:
+  flask_practica4:
+      build: 
+        context: .
+        dockerfile: flask_dockerfile
+      depends_on:
+        - mongo
+      ports:
+        - 5000:5000
+      volumes:
+        - ./flask:/flask
+
+  mongo:
+      image: mongo:latest
+      ports:
+        - 27017:27017
+      volumes:
+        - /c/Users/Migue/Desktop/DAI/practica4/datos_db:/datos/db # cambiar /c/... por ./datos_db en linux
+        - /c/Users/Migue/Desktop/DAI/practica4/dump:/dump       # cambiar /c/... por ./dump en linux       

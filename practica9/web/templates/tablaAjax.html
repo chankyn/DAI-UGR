@@ -1,0 +1,30 @@
+{% extends "basico.html" %}
+{% block content %}
+<div id="registrosArchivados">
+    <input type="hidden" id = "actual" value="0"/>
+    <input type="hidden" id = "nReg" value="0"/>
+    <table id="datos" class="table">
+        <thead>
+            <tr>
+                <th class="">Nombre Grupo</th>
+                <th class="">Albumes</th>
+                <th class="">Músicos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for grupo in grupos %}
+                <tr>
+                    <td>{{grupo.nombre}}</td>
+                    <td><a class="enlacesAjax" href="#" name="Album{{grupo.id}}">Enlaces a albumes {{grupo.nombre}}</a></td>
+                    <td><a class="enlacesAjax" href="#" name="Musico{{grupo.id}}">Enlaces a músicos {{grupo.nombre}}</a></td>
+                </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</div>
+<div id = "cargarDatosAjax">
+    {%if resultados %}
+
+    {%endif%}
+</div>
+{% endblock %}

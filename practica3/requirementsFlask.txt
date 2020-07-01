@@ -1,0 +1,5 @@
+# requirementFlask.txt
+
+Flask
+Pillow 
+Pickleshare

@@ -1,0 +1,47 @@
+{% extends "basico.html" %}
+{% block principal %}
+    {% if detalles is defined %}
+    <div>        
+        <form action="/user" method="POST">
+            <p>
+                <label>Nombre de usuario: </label>
+                <input type="text" placeholder="{{detalles[0]}}" readonly/>
+            </p>
+            <p>
+                <label>Introduzca su contraseña actual: </label>
+                <input type="password" placeholder="Contraseña" name="passActual" />
+            </p>
+            <p>
+                <label>Introduzca su nueva contraseña: </label>
+                <input type="password" placeholder="Nueva Contraseña" name="newPass1" />
+            </p>
+            <p>
+                <label>Introduzca otra vez la nueva contraseña: </label>
+                <input type="password" placeholder="Nueva Contraseña" name="newPass2" />
+            </p>
+            <p>
+                <label>Otros datos personales: </label>
+            </p>
+            <p>
+                <label>Introduzca su dirección: </label>
+                <input type="text" placeholder="{{detalles[1]}}" name="newDireccion"/>
+            </p>
+            <p>
+                <label>Introduzca su país: </label>
+                <input type="text" placeholder="{{detalles[2]}}" name="newPais"/>
+            </p>
+            <p>
+                <label>Introduzca su provincia: </label>
+                <input type="text" placeholder="{{detalles[3]}}" name="newProvincia"/>
+            </p>
+            <p>
+                <label>Introduzca su localidad: </label>
+                <input type="text" placeholder="{{detalles[4]}}" name="newLocalidad"/>
+            </p>
+            <p><button type="submit" >Cambiar detalles</button></p>    
+        </form>
+        {% else %}
+        <p class="error">Inicia sesión de usuario para cambiar tus datos.</p>
+        {% endif %}
+</div>
+{% endblock %}

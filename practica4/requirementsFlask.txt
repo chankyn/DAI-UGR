@@ -1,0 +1,6 @@
+# requirementFlask.txt
+
+Flask
+Pillow 
+pymongo
+pickleshare

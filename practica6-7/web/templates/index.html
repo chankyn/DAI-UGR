@@ -1,0 +1,88 @@
+{% extends "basico.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+{%if correcto%}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            {%  if correcto is True %}
+            <h1>Se ha ejecutado la acción.</h1>
+            {% elif correcto is False %}
+            <h1>Error en la acción.</h1>
+            <h2>Error de {{error}}</h2>
+            {%endif%}          
+        </div>
+    </div>
+</div>
+{%else%}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <h2>Musicos</h2>
+                {% if musicos|length == 0 %}
+                    <p>No hay musicos registrados</p>
+                {%else%}
+                    {% for musico in musicos %}
+                        <div class="row">
+                            <div class="col-6"><label>{{musico.nombre}}</label></div>
+                            <div class="col-3"><a  class="btn btn-info" href="/modificar/musico/{{musico.id}}">Modificar</a></div>
+                            <div class="col-3"><a  class="btn btn-danger" href="/borrar/musico/{{musico.id}}">Borrar</a></div>
+                        </div>
+                    {%endfor%}
+                {%endif%}
+            </div>
+        
+            <div class="col-6">
+                <h2>Instrumentos</h2>
+                {% if instrumentos|length == 0 %}
+                    <p>No hay instrumentos registrados</p>
+                {%else%}
+                    {% for instrumento in instrumentos %}
+                        <div class="row">
+                            <div class="col-6"><label>{{instrumento.nombre}}</label></div>
+                            <div class="col-3"><a  class="btn btn-info" href="/modificar/instrumento/{{instrumento.id}}">Modificar</a></div>
+                            <div class="col-3"><a  class="btn btn-danger" href="/borrar/instrumento/{{instrumento.id}}">Borrar</a></div>
+                        </div>
+                    {%endfor%}
+                {%endif%}
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <h2>Grupos Musicales</h2>
+                {% if grupos|length == 0 %}
+                    <p>No hay grupos registrados</p>
+                {%else%}
+                    {% for grupo in grupos %}
+                        <div class="row">
+                            <div class="col-6"><label>{{grupo.nombre}}</label></div>
+                            <div class="col-3"><a  class="btn btn-info" href="/modificar/grupo/{{grupo.id}}">Modificar</a></div>
+                            <div class="col-3"><a  class="btn btn-danger" href="/borrar/grupo/{{grupo.id}}">Borrar</a></div>
+                        </div>
+                    {%endfor%}
+                {%endif%}
+            </div>
+        
+            <div class="col-6">
+                <h2>Albums</h2>
+                {% if albums|length == 0 %}
+                    <p>No hay albums registrados</p>
+                {%else%}
+                    {% for album in albums %}
+                        <div class="row">
+                            <div class="col-6"><label>{{album.titulo}}</label></div>
+                            <div class="col-3"><a  class="btn btn-info" href="/modificar/album/{{album.id}}">Modificar</a></div>
+                            <div class="col-3"><a  class="btn btn-danger" href="/borrar/album/{{album.id}}">Borrar</a></div>
+                        </div>
+                    {%endfor%}
+                {%endif%}
+            </div>
+        </div>
+    </div>
+    
+{%endif%}
+
+{% endblock %}

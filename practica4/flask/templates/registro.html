@@ -1,0 +1,33 @@
+{% extends "basico.html" %}
+{% block principal %}
+    <div>
+        {% if errorRegistro is defined %}
+        <p class="error">Nombre de usuario ya en uso. Intente con otro nombre de usuario.</p>
+        {% endif %}
+        {% if errorCampoVacio is defined %}
+        <p class="error">Introduce todos los datos para hacer el registro.</p>
+        {% endif %}
+
+        {% if user is not defined %}
+        
+        <form action="/registrar" method="POST">
+            <div class="form-group row">
+                <div class="col-xs-2">
+                    <label>Introduzca un nombre de usuario: </label>
+                    <input type="text" class="form-control" placeholder="Usuario" name="registerName" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-xs-2">
+                    <label>Introduzca una contraseña: </label>
+                    <input type="password" class="form-control" placeholder="Contraseña" name="registerPass" />
+                </div>
+            </div>
+            <p><button class="btn btn-primary" type="submit" >Registrar</button></p>    
+        </form>
+    {% else %}
+        <p>Ya has iniciado sesión con un usuario.</p>
+    {% endif %}
+    
+</div>
+{% endblock %}

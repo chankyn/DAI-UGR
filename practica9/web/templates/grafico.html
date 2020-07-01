@@ -1,0 +1,143 @@
+{% extends "basico.html" %}
+{% block content %}
+<select id="opciones">
+  <option value="1">Número de albums de cada Grupo musical</option>
+  <option value="2">Número de músicos de cada grupo</option>
+  <option value="3" selected="selected">Número de instrumentos de cada grupo</option>
+  <option value="4">Agrupación de números de albums por cada año</option>
+</select>
+<div id="container" style="width:100%; height:400px;"></div>
+<div id="container2" style="width:100%; height:400px;"></div>
+<div id="container3" style="width:100%; height:400px;"></div>
+<div id="container4" style="width:100%; height:400px;"></div>
+<script>
+  _nombre1 = "Albums de cada grupo"
+  _xNombre1 = "Grupo musical"
+  _yNombre1 = "Número de albums"
+  _nombreSerie1 = "Albums"
+  _categorias1 = {{ grupos | safe }};
+  _series1 = {{ valores_grupos.0 | safe }};
+
+  _nombre2 = "Músicos de cada grupo"
+  _xNombre2 = "Grupo musical"
+  _yNombre2 = "Número de músicos"
+  _nombreSerie2 = "Músicos"
+  _categorias2 = {{ grupos | safe }};
+  _series2 = {{ valores_grupos.1 | safe }};
+
+  _nombre3 = "Instrumentos más usados"
+  _xNombre3 = "Nombre del instrumento"
+  _yNombre3 = "Número de grupos que lo usan"
+  _nombreSerie3 = "Total"
+  _categorias3 = {{ instrumentos | safe }};
+  _series3 = {{ n_instrumentos | safe }};
+
+  _nombre4 = "Albums lanzados por año"
+  _xNombre4 = "Año"
+  _yNombre4 = "Número de albums lanzados"
+  _nombreSerie4 = "Albums"
+  _categorias4 = {{ anio | safe }};
+  _series4 = {{ n_albums | safe }};
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var myChart1 = Highcharts.chart('container', {
+      chart: {
+        type: 'bar'
+      },
+      title: {
+        text: _nombre1
+      },
+      xAxis: {
+        categories: _categorias1,
+        crosshair: true,
+        title: {
+          text: _xNombre1
+        }
+      },
+      yAxis: {
+        title: {
+          text: _yNombre1
+        }
+      },
+      series: [{
+        name: _nombreSerie1,
+        data: _series1
+      }]
+    });
+    var myChart2 = Highcharts.chart('container2', {
+      chart: {
+        type: 'bar'
+      },
+      title: {
+        text: _nombre2
+      },
+      xAxis: {
+        categories: _categorias2,
+        crosshair: true,
+        title: {
+          text: _xNombre2
+        }
+      },
+      yAxis: {
+        title: {
+          text: _yNombre2
+        }
+      },
+      series: [{
+        name: _nombreSerie2,
+        data: _series2
+      }]
+    });
+    var myChart3 = Highcharts.chart('container3', {
+      chart: {
+        type: 'bar'
+      },
+      title: {
+        text: _nombre3
+      },
+      xAxis: {
+        categories: _categorias3,
+        crosshair: true,
+        title: {
+          text: _xNombre3
+        }
+      },
+      yAxis: {
+        title: {
+          text: _yNombre3
+        }
+      },
+      series: [{
+        name: _nombreSerie3,
+        data: _series3
+      }]
+    });
+    var myChart4 = Highcharts.chart('container4', {
+      chart: {
+        type: 'bar'
+      },
+      title: {
+        text: _nombre4
+      },
+      xAxis: {
+        categories: _categorias4,
+        crosshair: true,
+        title: {
+          text: _xNombre4
+        }
+      },
+      yAxis: {
+        title: {
+          text: _yNombre4
+        }
+      },
+      series: [{
+        name: _nombreSerie4,
+        data: _series4
+      }]
+    });
+  });
+</script>
+
+
+{% endblock %}

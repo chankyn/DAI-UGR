@@ -1,0 +1,4 @@
+parser = re.compile('<.+?|[^<>]*'),re.S)
+
+for e in parser.findall(contenido):
+        print("[])

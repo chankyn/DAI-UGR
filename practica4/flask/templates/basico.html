@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="static/css/basico.css"/>
+        {% block css %}{% endblock %}
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="static/js/basico.js"></script>
+        
+        <title>Práctica 4: DAI</title>
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <img src="static/images/logo.png" height="100vh" width="100vw">
+            </div>
+            <div class="navegacion">
+                <h1>Fat-FOOD</h1>
+
+                <nav>
+                    <a href="/">Inicio</a>
+                    <a href="/about">Acerca de</a>
+                    <a href="/contacto">Contacto</a>
+                    {% if user is defined %}
+                    <a href="/user">Perfil de usuario</a>
+                    {% endif %}
+                    <a href="/mongo">Pokemones</a>
+                    <div>
+                        {% if user is not defined %}
+                            <form action="/registrar" method="GET">
+                                <button class="btn btn-primary" type="submit" >Registrar</button>    
+                            </form>
+                        {% endif %}
+                    </div>
+                    <div>
+                        {% if user is not defined %}
+                            <form action="/logear" method="POST">
+                                <input type="text" style="display:inline;" class="form-control" placeholder="Usuario" name="loginName" />
+                                <input type="password" style="display:inline;width:49%;" class="form-control" placeholder="Contraseña" name="loginPass" />
+                                <button class="btn btn-primary" type="submit" >Login</button>    
+                            </form>
+                            
+                        {% else %}
+                            <form action="/logout" method="POST">
+                                <strong class="welcome">Bienvenido {{ user }}</strong>
+                                <button class="btn btn-primary" type="submit" >Logout</button>    
+                            </form>
+                        {% endif %}
+                    </div>
+                    
+                    
+                </nav>
+            </div>
+        </header>
+        <main>
+            <div id="menu">
+                <ul class="format">
+                    <li>Historial del usuario</li>
+                    {% if historial is not defined %}
+                        <li><a href="/">Última página visitada</a></li>
+                    {% else %}
+                        {% for item in historial %}
+                        <li><a href="{{ item[0] }}">{{ item[1] }}</a></li>
+                        {% endfor %}
+                    {% endif %}
+                   
+                </ul>
+            </div>
+            <div id="principal">
+                {% block principal %}{% endblock %}
+                {% if errorUsuarioNoValido is defined %}
+                <p class="error">El usuario introducido no está registrado en el sistema.</p>
+                {% endif %}
+                {% if errorCampoVacio is defined %}
+                <p class="error">Introduce todos los campos para iniciar sesión.</p>
+                {% endif %}
+                {% if errorPassword is defined %}
+                <p class="error">La contraseña introducida no es correcta.</p>
+                {% endif %}
+            </div>
+        </main>
+        <footer>
+            <p class="centrado">Copyright Miguel Ángel Hinojosa Castro Prácticas DAI 2019/2020</p>
+        </footer>
+    </body>
+</html>

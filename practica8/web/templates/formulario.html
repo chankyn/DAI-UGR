@@ -1,0 +1,27 @@
+{% extends "basico.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+    
+    <div class="row justify-content-center">
+        <div class="col-8">
+            {% if var is not defined %}
+                <h1 class="mt-2">Música</h1>
+                <hr class="mt-0 mb-4">
+            {% else %}
+                <h1 class="mt-2">Registrar {{nombre}}</h1>
+                <hr class="mt-0 mb-4">
+            {%endif%}
+            <form action="/{{nombreFormulario}}/" method="post" name="form">
+                {% csrf_token %}  
+                {{ form|crispy }}
+                <input type="hidden" value="{{nombre}}" name="tipo" />
+                <input type="hidden" value="{{id}}" name="id" />
+                <button type="submit" class="btn btn-success">Guardar {{nombre}}</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

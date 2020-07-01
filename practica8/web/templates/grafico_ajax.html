@@ -1,0 +1,40 @@
+{% extends "basico.html" %}
+{% block content %}
+<select id="opciones_ajax">
+  <option value="1">Número de albums de cada Grupo musical</option>
+  <option value="2">Número de músicos de cada grupo</option>
+  <option value="3" selected="selected">Número de instrumentos de cada grupo</option>
+  <option value="4">Agrupación de números de albums por cada año</option>
+</select>
+<div id="container_ajax" style="width:100%; height:400px;"></div>
+<script>
+  function crearGraficoAjax(_nombre1,_xNombre1,_yNombre1,_nombreSerie1,_categorias1,_series1){
+    Highcharts.chart('container_ajax', {
+      chart: {
+        type: 'bar'
+      },
+      title: {
+        text: _nombre1
+      },
+      xAxis: {
+        categories: _categorias1,
+        crosshair: true,
+        title: {
+          text: _xNombre1
+        }
+      },
+      yAxis: {
+        title: {
+          text: _yNombre1
+        }
+      },
+      series: [{
+        name: _nombreSerie1,
+        data: _series1
+      }]
+    });
+  }
+</script>
+
+
+{% endblock %}
